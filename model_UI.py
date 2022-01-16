@@ -4,6 +4,9 @@ from tkinter import ttk
 import frame as fr
 import sim_test as sim
 
+#arbritrary display function
+def display():
+    print("A: %s\nB: %s" % (input1.get(), input2.get()))
 
 #tkinter window settings
 root = tk.Tk()
@@ -14,6 +17,8 @@ fr.bt_create(new_frame, 0, 1, "Adiabatic PFR", "Simulates an Adiabatic PFR react
 fr.bt_create(new_frame, 1, 1, "Isothermal PFR", "Simulates an Isothermal PFR reactor", lambda: fr.isopfr(new_frame, isopfr_frame, root))
 fr.bt_create(new_frame, 0, 2, "Adiabatic PBR", "Simulates an Adiabatic PBR reactor", lambda: fr.adpbr(new_frame, adpbr_frame, root))
 fr.bt_create(new_frame, 1, 2, "Isothermal PBR", "Simulates an Isothermal PBR reactor", lambda: fr.isopbr(new_frame, isopbr_frame, root))
+
+#Reactor frames
 adcstr_frame = ttk.Frame(root)
 isocstr_frame = ttk.Frame(root)
 adpfr_frame = ttk.Frame(root)
@@ -35,9 +40,22 @@ intro = "Plastic Pyrolis Solver\n"
 howto = ("The following program will run simulations and model a plastic pyrolysis reactor.\n\
 The user can pick between 4 different reactors to simulate the process: CSTR, PBR, PFR, Batch")
 
+
+#Text entry
+tk.Label(isocstr_frame, text = "Input 1").grid(row=0)
+tk.Label(isocstr_frame, text = "Input 2").grid(row=1)
+
+input1 = tk.Entry(isocstr_frame)
+input2 = tk.Entry(isocstr_frame)
+
+input1.grid(row=0, column=1)
+input2.grid(row=1, column=1)
+
+
 #Buttons 
 get_started = ttk.Button(start_frame, text = 'Get Started', command = lambda: fr.start(start_frame, new_frame, root))
 run_sim = ttk.Button(adcstr_frame, text = 'Run Test', command = lambda: sim.adCSTR())
+show_results = ttk.Button(isocstr_frame, text = 'Display Results', command = display).grid()
 
 #Buttons (new_frame)
 #adcstr_select = ttk.Button(new_frame, text = 'Adiabatic CSTR', command = lambda: fr.adcstr(new_frame, adcstr_frame, root))

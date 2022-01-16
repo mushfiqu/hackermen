@@ -61,4 +61,3 @@ def bt_create(new_frame, row_num, col_num, button_name, description, command_nam
     button.pack(expand = True)
     new_frame.columnconfigure(col_num, weight = 1)
     new_frame.rowconfigure(row_num, weight = 1)
-

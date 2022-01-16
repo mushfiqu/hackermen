@@ -87,7 +87,7 @@ def adCSTR():
     plt.legend()
     plt.show()
     
-    return (Tsol, Xfinal, XEM, XMB , T)
+    return (Tsol, Xfinal, XEB, XMB , T)
 
 #Isothermal CSTR
 def isoCSTR(CAo, V, vo, thetaB, thetaC, thetaD, thetaI, a, b, c, d, To, A, EA, Hrxno, CpA, CpB, CpC, CpD, Tc, U, SA):
