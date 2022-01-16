@@ -12,32 +12,32 @@ import matplotlib.pyplot as plt
 #aA + bB + I -> cC +dD
 #A + B -> C
 
-a = 1
-b = 1
-c = 1 
-d = 0
-delta = d + c - b - a
-eps = (yAo*delta)/a
-A = 500000 #L/mol.s
-EA = 45000 #J/mol.K
-Hrxno = -65000 #J/mol
-CpA = 130 #J/mol.K
-CpB = 150 #J/mol.K
-CpC = 125 #J/mol.K
-CpD = 0 #J/mol.K
-deltaCp = (d*CpD + c*CpC - a*CpA - b*CpB)/a    
-Tref = 298 #K
-R = 8.314
+#a = 1
+#b = 1
+#c = 1 
+#d = 0
+#delta = d + c - b - a
+#eps = (yAo*delta)/a
+#A = 500000 #L/mol.s
+#EA = 45000 #J/mol.K
+#Hrxno = -65000 #J/mol
+#CpA = 130 #J/mol.K
+#CpB = 150 #J/mol.K
+#CpC = 125 #J/mol.K
+#CpD = 0 #J/mol.K
+#deltaCp = (d*CpD + c*CpC - a*CpA - b*CpB)/a    
+#Tref = 298 #K
+#R = 8.314
 
 
-def adbCSTR(CAo, Vr, vo, thetaB, thetaI, To, T1, T2):
+def adcstr(CAo, Vr, vo, thetaB, thetaI, To, T1, T2):
      
     a = 1
     b = 1
     c = 1 
     d = 0
     delta = d + c - b - a
-    eps = (yAo*delta)/a
+    #eps = (yAo*delta)/a
     A = 500000 #L/mol.s
     EA = 45000 #J/mol.K
     Hrxno = -65000 #J/mol
@@ -91,14 +91,14 @@ def adbCSTR(CAo, Vr, vo, thetaB, thetaI, To, T1, T2):
     return (Tsol, Xfinal)
 
 
-def isoCSTR(CAo, Vr, vo, thetaB, thetaI, To, T1, T2, Tc, U, SA):
+def isocstr(CAo, Vr, vo, thetaB, thetaI, To, T1, T2, Tc, U, SA):
     
     a = 1
     b = 1
     c = 1 
     d = 0
     delta = d + c - b - a
-    eps = (yAo*delta)/a
+    #eps = (yAo*delta)/a
     A = 500000 #L/mol.s
     EA = 45000 #J/mol.K
     Hrxno = -65000 #J/mol
@@ -150,7 +150,7 @@ def isoCSTR(CAo, Vr, vo, thetaB, thetaI, To, T1, T2, Tc, U, SA):
     return (Tsol, Xsol)
 
 
-def adbPFR(CAo, Vr, vo, yAo, thetaB, thetaI, To):
+def adpfr(CAo, Vr, vo, yAo, thetaB, thetaI, To):
     
     a = 1
     b = 1
@@ -177,7 +177,7 @@ def adbPFR(CAo, Vr, vo, yAo, thetaB, thetaI, To):
         k = A*np.exp(-EA/(R*S[1]))
         CA = CAo*To/S[1]*(1-S[0])/(1+eps*S[0])
         CB = CAo*To/S[1]*(thetaB-b/a*S[0])/(1+eps*S[0])
-        rA = (k*CA*CB)
+        rA = (k*CA**2*CB**2)
         FAo = CAo*vo
         dXAdV = -rA/FAo  #from definition
         dTdV = ((deltaCp*(Tref - S[1])-Hrxno)*(k*(1-S[0])*To))/((CpA + S[0]*deltaCp)*(vo*S[1]))
@@ -205,7 +205,7 @@ def adbPFR(CAo, Vr, vo, yAo, thetaB, thetaI, To):
     return(T[len(T)-1],XA[len(XA)-1])
     
     
-def isoPFR(CAo, Vr, vo, yAo, thetaB, thetaI, To):
+def isopfr(CAo, Vr, vo, yAo, thetaB, thetaI, To):
     
     a = 1
     b = 1
@@ -232,7 +232,7 @@ def isoPFR(CAo, Vr, vo, yAo, thetaB, thetaI, To):
          k = A*np.exp(-EA/(R*To))
          CA = CAo*(1-S[0])/(1+eps*S[0])
          CB = CAo*(thetaB-b/a*S[0])/(1+eps*S[0])
-         rA = (k*CA*CB)
+         rA = (k*CA**2*CB**2)
          FAo = CAo*vo
          dXAdV = -rA/FAo  #from definition
          return dXAdV    
@@ -248,13 +248,14 @@ def isoPFR(CAo, Vr, vo, yAo, thetaB, thetaI, To):
     plt.plot(V, XA, "k")
     plt.xlabel("Volume (L)")
     plt.ylabel("Conversion ($X_A$)")
+    plt.show()
 
     print('The exit conversion is',XAexit)
     
     return(XAexit)
     
     
-def adbPBR(CAo, Vr, vo, yAo, thetaB, thetaI, To, alpha, rho, BW):
+def adpbr(CAo, Vr, vo, yAo, thetaB, thetaI, To, alpha, rho, BW, U):
     
     a = 1
     b = 1
@@ -281,7 +282,7 @@ def adbPBR(CAo, Vr, vo, yAo, thetaB, thetaI, To, alpha, rho, BW):
         k = A*np.exp(-EA/(R*S[1]))
         CA = (CAo*S[2]*To*(1 - S[0]))/(S[1]*(1 + eps*S[0]))
         CB = (CAo*S[2]*To*(thetaB - b/a*S[0]))/(S[1]*(1 + eps*S[0]))
-        rA = (k*CA*CB)
+        rA = (k*CA**2*CB**2)
         FAo = CAo*vo
         Hrxn = Hrxno + deltaCp*(S[1] - To)
         dXAdW = -rA/FAo  #from definition
@@ -322,7 +323,7 @@ def adbPBR(CAo, Vr, vo, yAo, thetaB, thetaI, To, alpha, rho, BW):
     return(T[len(T)-1], XA[len(XA)-1], (1-y[len(y)-1])*100)
     
     
-def isoPBR(CAo, V, vo, yAo, thetaB, thetaI, To, Tc, alpha, rho, U, mc, CpCool, sav):
+def isopbr(CAo, Vr, vo, yAo, thetaB, thetaI, To, Tc, alpha, rho, U, mc, CpCool, SA, BW):
     
     a = 1
     b = 1
@@ -346,22 +347,22 @@ def isoPBR(CAo, V, vo, yAo, thetaB, thetaI, To, Tc, alpha, rho, U, mc, CpCool, s
     #S = [conversion, pressure drop, coolant temperature]
 
     def pbr(S,V):
-        k = A*np.exp(-EA/(R*S[1]))
+        k = A*np.exp(-EA/(R*To))
         CA = CAo*S[1]*((1-S[0])/(1+eps*S[0])) 
         CB = CAo*S[1]*((thetaB-(b/a*S[0]))/((1+eps*S[0])))
-        rA = (k*CA*CB)
+        rA = (k*CA**2*CB**2)
         FAo = CAo*vo
         dXAdW = -rA/FAo  #from definition
         dydW = -(alpha*(1 + eps*S[0]))/(2*S[1])
         dTcdW = (U*a*(To - S[2]))/(mc*CpCool)
-        dSdV = [dXAdW, dydW, dTcdW]
+        dSdW = [dXAdW, dydW, dTcdW]
         return dSdW    
 
     #The beg weight is 50 kg
 
     #Solving the system of ODEs
     W = np.linspace(0, BW, 200)
-    S0 = [0,1,Tcin] #Initial conditions
+    S0 = [0,1,Tc] #Initial conditions
     S = odeint(pbr, S0, W)
 
     #Extracting solutions
@@ -387,5 +388,5 @@ def isoPBR(CAo, V, vo, yAo, thetaB, thetaI, To, Tc, alpha, rho, U, mc, CpCool, s
     print('The exit conversion is',np.round(XA[len(XA)-1],2))
     print('The pressure drop is',np.round((1-y[len(y)-1])*100,2),'%')
 
-    return(T[len(T)-1], XA[len(XA)-1], (1-y[len(y)-1])*100)    
+    return(Tc[len(Tc)-1], XA[len(XA)-1], (1-y[len(y)-1])*100)    
     
