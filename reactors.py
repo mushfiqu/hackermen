@@ -229,13 +229,13 @@ def isoPFR(CAo, Vr, vo, yAo, thetaB, thetaI, To):
     #S = [conversion]
 
     def pfr(S,V):
-    k = A*np.exp(-EA/(R*To))
-    CA = CAo*(1-S[0])/(1+eps*S[0])
-    CB = CAo*(thetaB-b/a*S[0])/(1+eps*S[0])
-    rA = (k*CA*CB)
-    FAo = CAo*vo
-    dXAdV = -rA/FAo  #from definition
-    return dXAdV    
+         k = A*np.exp(-EA/(R*To))
+         CA = CAo*(1-S[0])/(1+eps*S[0])
+         CB = CAo*(thetaB-b/a*S[0])/(1+eps*S[0])
+         rA = (k*CA*CB)
+         FAo = CAo*vo
+         dXAdV = -rA/FAo  #from definition
+         return dXAdV    
 
     #Solving the system of ODEs
     Xo = 0
