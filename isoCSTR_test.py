@@ -4,6 +4,10 @@ Created on Sun Jan 16 04:40:59 2022
 
 @author: gibra
 """
+import numpy as np
+from scipy.integrate import odeint
+from scipy.optimize import fmin
+import matplotlib.pyplot as plt
 
 def isoCSTR(CAo, Vr, vo, thetaB, thetaI, To, T1, T2, Tc, U, SA):
     
