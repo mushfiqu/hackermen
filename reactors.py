@@ -177,7 +177,7 @@ def adpfr(CAo, Vr, vo, yAo, thetaB, thetaI, To):
         k = A*np.exp(-EA/(R*S[1]))
         CA = CAo*To/S[1]*(1-S[0])/(1+eps*S[0])
         CB = CAo*To/S[1]*(thetaB-b/a*S[0])/(1+eps*S[0])
-        rA = (k*CA**2*CB**2)
+        rA = -(k*CA**2*CB**2)
         FAo = CAo*vo
         dXAdV = -rA/FAo  #from definition
         dTdV = ((deltaCp*(Tref - S[1])-Hrxno)*(k*(1-S[0])*To))/((CpA + S[0]*deltaCp)*(vo*S[1]))
@@ -232,7 +232,7 @@ def isopfr(CAo, Vr, vo, yAo, thetaB, thetaI, To):
          k = A*np.exp(-EA/(R*To))
          CA = CAo*(1-S[0])/(1+eps*S[0])
          CB = CAo*(thetaB-b/a*S[0])/(1+eps*S[0])
-         rA = (k*CA**2*CB**2)
+         rA = -(k*CA**2*CB**2)
          FAo = CAo*vo
          dXAdV = -rA/FAo  #from definition
          return dXAdV    
@@ -282,7 +282,7 @@ def adpbr(CAo, Vr, vo, yAo, thetaB, thetaI, To, alpha, rho, BW, U):
         k = A*np.exp(-EA/(R*S[1]))
         CA = (CAo*S[2]*To*(1 - S[0]))/(S[1]*(1 + eps*S[0]))
         CB = (CAo*S[2]*To*(thetaB - b/a*S[0]))/(S[1]*(1 + eps*S[0]))
-        rA = (k*CA**2*CB**2)
+        rA = -(k*CA**2*CB**2)
         FAo = CAo*vo
         Hrxn = Hrxno + deltaCp*(S[1] - To)
         dXAdW = -rA/FAo  #from definition
@@ -350,7 +350,7 @@ def isopbr(CAo, Vr, vo, yAo, thetaB, thetaI, To, Tc, alpha, rho, U, mc, CpCool, 
         k = A*np.exp(-EA/(R*To))
         CA = CAo*S[1]*((1-S[0])/(1+eps*S[0])) 
         CB = CAo*S[1]*((thetaB-(b/a*S[0]))/((1+eps*S[0])))
-        rA = (k*CA**2*CB**2)
+        rA = -(k*CA**2*CB**2)
         FAo = CAo*vo
         dXAdW = -rA/FAo  #from definition
         dydW = -(alpha*(1 + eps*S[0]))/(2*S[1])
