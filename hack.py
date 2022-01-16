@@ -7,10 +7,22 @@ Created on Sat Jan 15 21:07:34 2022
 
 aA + bB + I -> cC +dD
 
+A -> C +2D
 Ea = 237.05 #KJ/mol
+a = 1
+b = 0
+c = 1
+d = 2
+A = 2.92*10**22
+EA = 237.05
+Hrxno = 150
+CpA = 150
+CpC = 150
+CpD = 150
+
 
 #adiabaticCSTR
- def adCSTR(CAo, V, vo, thetaB, thetaI, a, b, c, d, To, A, EA, Hrxno, CpA, CpB, CpC, CpD):
+ def adCSTR(CAo, V, vo, thetaB, thetaI, To):
      
     #Total heat capacity
     deltaCp = (d*CpD + c*CpC - a*CpA - b*CpB)/a    
