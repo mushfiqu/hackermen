@@ -2,6 +2,7 @@
 
 import tkinter as tk
 from tkinter import ttk
+#from isoCSTR_test import isoCSTR
 
 
 #Creates a new frame upon pressing "Get Started"
@@ -17,36 +18,48 @@ def adcstr(new_frame, adcstr_frame, root):
     root.title("Adiabatic CSTR")
     new_frame.grid_forget()
     adcstr_frame.grid(row = 0, column = 0, sticky = 'NSEW')
+    back = ttk.Button(adcstr_frame, text = "Back to top", command = lambda: start(adcstr_frame, new_frame, root))
+    back.grid(row = 100, column = 0, pady = 10)
 
 #Isothermal CSTR selection window
 def isocstr(new_frame, isocstr_frame, root):
     root.title("Isothermal CSTR")
     new_frame.grid_forget()
     isocstr_frame.grid(row = 0, column = 0, sticky = 'NSEW')
+    back = ttk.Button(isocstr_frame, text = "Back to top", command = lambda: start(isocstr_frame, new_frame, root))
+    back.grid(row = 100, column = 0, pady = 10)
 
 #Adiabatic PFR selection window
 def adpfr(new_frame, adpfr_frame, root):
     root.title("Adiabatic PFR")
     new_frame.grid_forget()
     adpfr_frame.grid(row = 0, column = 0, sticky = 'NSEW')
+    back = ttk.Button(adpfr_frame, text = "Back to top", command = lambda: start(adpfr_frame, new_frame, root))
+    back.grid(row = 100, column = 0, pady = 10)
 
 #Isothermal PFR selection window
 def isopfr(new_frame, isopfr_frame, root):
     root.title("Isothermal PFR")
     new_frame.grid_forget()
-    cstr_frame.grid(row = 0, column = 0, sticky = 'NSEW')
+    isopfr_frame.grid(row = 0, column = 0, sticky = 'NSEW')
+    back = ttk.Button(isopfr_frame, text = "Back to top", command = lambda: start(isopfr_frame, new_frame, root))
+    back.grid(row = 100, column = 0, pady = 10)
 
 #Adiabatic PBR selection window
 def adpbr(new_frame, adpbr_frame, root):
     root.title("Adiabatic PBR")
     new_frame.grid_forget()
     adpbr_frame.grid(row = 0, column = 0, sticky = 'NSEW')
+    back = ttk.Button(adpbr_frame, text = "Back to top", command = lambda: start(adpbr_frame, new_frame, root))
+    back.grid(row = 100, column = 0, pady = 10)
 
 #Isothermal PBR selection window
 def isopbr(new_frame, isopbr_frame, root):
     root.title("Isothermal PBR")
     new_frame.grid_forget()
     isopbr_frame.grid(row = 0, column = 0, sticky = 'NSEW')
+    back = ttk.Button(isopbr_frame, text = "Back to top", command = lambda: start(isopbr_frame, new_frame, root))
+    back.grid(row = 100, column = 0, pady = 10)
 
 #Split new_frame into 6 frames in a grid
 def bt_create(new_frame, row_num, col_num, button_name, description, command_name):
