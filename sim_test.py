@@ -39,7 +39,7 @@ T = np.linspace(340, 400, 30) #K
 #CAo, V, vo, thetaB, thetaI, To
 
 #adiabaticCSTR
-def adCSTR():
+def adbCSTR():
      
     #Total heat capacity
     deltaCp = (d*CpD + c*CpC - a*CpA - b*CpB)/a    
